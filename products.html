@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Sản phẩm - AeroGreen Hub</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="top-bar">
+    <span>GIẢI PHÁP KHÍ CANH CHO GIA ĐÌNH ĐÔ THỊ</span>
+    <span>f ◎ ✉</span>
+  </div>
+
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon">🌱</div>
+      <div>
+        <h2>AeroGreen Hub</h2>
+        <p>Sống xanh - Sống khỏe</p>
+      </div>
+    </div>
+
+    <nav>
+      <a href="index.html">TRANG CHỦ</a>
+      <a href="about.html">GIỚI THIỆU</a>
+      <a href="services.html">DỊCH VỤ</a>
+      <a href="products.html">SẢN PHẨM</a>
+      <a href="contact.html">LIÊN HỆ</a>
+    </nav>
+  </header>
+
+  <section class="section products">
+    <h2 class="page-title">Sản phẩm / Gói giải pháp</h2>
+
+    <div class="cards">
+      <div class="card">
+        <img src="images/tower.png" alt="AeroGreen Mini">
+        <div class="card-content">
+          <h3>AeroGreen Mini</h3>
+          <p>Phù hợp chung cư, ban công nhỏ, người mới bắt đầu trải nghiệm khí canh.</p>
+          <p class="price">5.990.000đ</p>
+          <button onclick="chooseProduct('AeroGreen Mini')">Tư vấn</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="images/banner.jpg" alt="AeroGreen Standard">
+        <div class="card-content">
+          <h3>AeroGreen Standard</h3>
+          <p>Phù hợp nhà phố hoặc căn hộ có ban công vừa, gia đình có nhu cầu ổn định.</p>
+          <p class="price">8.490.000đ</p>
+          <button onclick="chooseProduct('AeroGreen Standard')">Tư vấn</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="images/banner.jpg" alt="AeroGreen Family">
+        <div class="card-content">
+          <h3>AeroGreen Family</h3>
+          <p>Phù hợp sân thượng, không gian lớn, khách hàng muốn tạo khu vườn xanh tại nhà.</p>
+          <p class="price">12.990.000đ</p>
+          <button onclick="chooseProduct('AeroGreen Family')">Tư vấn</button>
+        </div>
+      </div>
+    </div>
+  </section>
+<section class="section advisor">
+  <h2 class="page-title">Tư vấn nhanh chọn gói</h2>
+
+  <div class="advisor-box">
+    <label>Loại không gian</label>
+    <select id="houseType">
+      <option value="chungcu">Chung cư</option>
+      <option value="nhapho">Nhà phố</option>
+      <option value="santhuong">Sân thượng</option>
+    </select>
+
+    <label>Diện tích ban công/sân thượng</label>
+    <select id="area">
+      <option value="small">Dưới 3m²</option>
+      <option value="medium">3 - 6m²</option>
+      <option value="large">Trên 6m²</option>
+    </select>
+
+    <label>Ngân sách dự kiến</label>
+    <select id="budget">
+      <option value="low">3 - 6 triệu</option>
+      <option value="mid">6 - 10 triệu</option>
+      <option value="high">Trên 10 triệu</option>
+    </select>
+
+    <button onclick="showAdvice()">Xem gợi ý</button>
+  </div>
+
+  <div id="adviceResult" class="advice-result"></div>
+</section>
+  <footer>
+    <h3>AeroGreen Hub</h3>
+    <p>MVP demo - Nền tảng trung gian tư vấn khí canh.</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
