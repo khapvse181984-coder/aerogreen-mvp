@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AeroGreen Hub — Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-icon">🌱</span>
+        <div>
+          <h2>AeroGreen Hub</h2>
+          <p>Admin Panel</p>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-tab="dashboard">
+          <span>📊</span> Dashboard
+        </a>
+        <a href="#" class="nav-item" data-tab="contacts">
+          <span>📋</span> Yêu cầu tư vấn
+        </a>
+        <a href="#" class="nav-item" data-tab="products">
+          <span>📦</span> Sản phẩm
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+      <!-- Header -->
+      <header class="main-header">
+        <h1 id="page-title">Dashboard</h1>
+        <div class="header-info">
+          <span id="current-time"></span>
+        </div>
+      </header>
+
+      <!-- Dashboard Tab -->
+      <section id="tab-dashboard" class="tab-content active">
+        <!-- Stats Cards -->
+        <div class="stats-grid" id="stats-cards">
+          <div class="stat-card stat-total">
+            <div class="stat-icon">📋</div>
+            <div>
+              <div class="stat-value" id="stat-total">0</div>
+              <div class="stat-label">Tổng yêu cầu</div>
+            </div>
+          </div>
+          <div class="stat-card stat-pending">
+            <div class="stat-icon">⏳</div>
+            <div>
+              <div class="stat-value" id="stat-pending">0</div>
+              <div class="stat-label">Chưa gọi</div>
+            </div>
+          </div>
+          <div class="stat-card stat-contacted">
+            <div class="stat-icon">📞</div>
+            <div>
+              <div class="stat-value" id="stat-contacted">0</div>
+              <div class="stat-label">Đã tư vấn</div>
+            </div>
+          </div>
+          <div class="stat-card stat-installed">
+            <div class="stat-icon">✅</div>
+            <div>
+              <div class="stat-value" id="stat-installed">0</div>
+              <div class="stat-label">Đã lắp đặt</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="card">
+            <h3>Phân bố theo loại nhà</h3>
+            <div id="house-type-chart" class="chart-container"></div>
+          </div>
+          <div class="card">
+            <h3>Phân bố theo trạng thái</h3>
+            <div id="status-chart" class="chart-container"></div>
+          </div>
+          <div class="card card-wide">
+            <h3>Yêu cầu gần đây</h3>
+            <div id="recent-contacts"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contacts Tab -->
+      <section id="tab-contacts" class="tab-content">
+        <div class="toolbar">
+          <div class="filter-group">
+            <label>Lọc trạng thái:</label>
+            <select id="filter-status" onchange="loadContacts()">
+              <option value="">Tất cả</option>
+              <option value="pending">Chưa gọi</option>
+              <option value="contacted">Đã tư vấn</option>
+              <option value="installed">Đã lắp đặt</option>
+              <option value="closed">Đã đóng</option>
+            </select>
+          </div>
+          <div class="search-group">
+            <input type="text" id="search-input" placeholder="Tìm kiếm..." oninput="loadContacts()">
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>STT</th>
+                <th>Họ tên</th>
+                <th>SĐT</th>
+                <th>Loại nhà</th>
+                <th>Diện tích</th>
+                <th>Ngân sách</th>
+                <th>Ghi chú</th>
+                <th>Ngày ĐK</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+              </tr>
+            </thead>
+            <tbody id="contacts-table-body">
+              <tr><td colspan="10" class="loading">Đang tải...</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="pagination" class="pagination"></div>
+      </section>
+
+      <!-- Products Tab -->
+      <section id="tab-products" class="tab-content">
+        <div class="card">
+          <h3>Danh sách sản phẩm</h3>
+          <div id="products-list"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

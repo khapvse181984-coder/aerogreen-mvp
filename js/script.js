@@ -3,34 +3,72 @@ function chooseProduct(productName) {
   window.location.href = "contact.html";
 }
 
-function submitForm() {
+// API base URL — change this to your backend server address
+const API_BASE = "http://localhost:3000/api";
+
+async function submitForm() {
   const name = document.getElementById("name").value;
   const phone = document.getElementById("phone").value;
-  const space = document.getElementById("space").value;
-  const note = document.getElementById("note").value;
   const areaInstall = document.getElementById("areaInstall").value;
-const budgetContact = document.getElementById("budgetContact").value;
+  const budgetContact = document.getElementById("budgetContact").value;
+  const note = document.getElementById("note").value;
+
+  // Lấy thêm các field từ form (nếu có)
+  const houseType = document.getElementById("houseType")
+    ? document.getElementById("houseType").value
+    : "";
+  const area = document.getElementById("area")
+    ? document.getElementById("area").value
+    : "";
+  const budget = document.getElementById("budget")
+    ? document.getElementById("budget").value
+    : "";
+  const goal = document.getElementById("goal")
+    ? document.getElementById("goal").value
+    : "";
 
   if (name.trim() === "" || phone.trim() === "") {
     alert("Vui lòng nhập họ tên và số điện thoại.");
     return;
   }
 
-  console.log({
-  name,
-  phone,
-  space,
-  areaInstall,
-  budgetContact,
-  note
-});
+  try {
+    const response = await fetch(API_BASE + "/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: name.trim(),
+        phone: phone.trim(),
+        house_type: houseType,
+        area: area || areaInstall,
+        budget: budget || budgetContact,
+        goal,
+        note,
+      }),
+    });
 
-  document.getElementById("success").innerText =
-    "Đã ghi nhận thông tin. AeroGreen Hub sẽ liên hệ tư vấn.";
+    const result = await response.json();
 
-  document.getElementById("name").value = "";
-  document.getElementById("phone").value = "";
-  document.getElementById("note").value = "";
+    if (result.success) {
+      document.getElementById("success").innerText = result.message;
+
+      // Clear form
+      document.getElementById("name").value = "";
+      document.getElementById("phone").value = "";
+      if (document.getElementById("areaInstall"))
+        document.getElementById("areaInstall").value = "";
+      if (document.getElementById("budgetContact"))
+        document.getElementById("budgetContact").value = "";
+      document.getElementById("note").value = "";
+    } else {
+      alert("Lỗi: " + (result.error || "Không thể gửi thông tin."));
+    }
+  } catch (err) {
+    alert(
+      "Không thể kết nối đến server. Vui lòng đảm bảo backend đang chạy tại " +
+        API_BASE
+    );
+  }
 }
 
 window.onload = function () {
