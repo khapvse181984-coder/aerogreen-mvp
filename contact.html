@@ -51,11 +51,22 @@
         <input id="name" type="text" placeholder="Họ và tên">
         <input id="phone" type="text" placeholder="Số điện thoại">
 
+        <select id="houseType">
+          <option value="">— Loại nhà của bạn —</option>
+          <option value="Chung cư">Chung cư</option>
+          <option value="Nhà phố">Nhà phố</option>
+          <option value="Sân thượng">Sân thượng</option>
+          <option value="Biệt thự">Biệt thự</option>
+          <option value="Khác">Khác</option>
+        </select>
+
         <input id="areaInstall" type="text" placeholder="Diện tích dự kiến lắp đặt. VD: Ban công ~5m², sân thượng">
 
 <input id="budgetContact" type="text" placeholder="Ngân sách dự kiến. VD: 5–10 triệu đồng">
 
-        <textarea id="note" placeholder="Mô tả nhu cầu của bạn"></textarea>
+        <input id="goal" type="text" placeholder="Mục tiêu của bạn. VD: Có rau sạch cho gia đình, giảm stress...">
+
+        <textarea id="note" placeholder="Mô tả nhu cầu của bạn (tuỳ chọn)"></textarea>
 
         <button onclick="submitForm()">Gửi thông tin</button>
 

@@ -3,9 +3,6 @@ function chooseProduct(productName) {
   window.location.href = "contact.html";
 }
 
-// API base URL — change this to your backend server address
-const API_BASE = "http://localhost:3000/api";
-
 async function submitForm() {
   const name = document.getElementById("name").value;
   const phone = document.getElementById("phone").value;

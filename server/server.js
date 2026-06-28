@@ -36,6 +36,27 @@ app.use("/api/products", require("./routes/products"));
 app.use("/api/recommend", require("./routes/recommend"));
 app.use("/api/stats", require("./routes/stats"));
 
+// API root — welcome message
+app.get("/api", (req, res) => {
+  res.json({
+    name: "AeroGreen Hub API",
+    version: "1.0.0",
+    status: "running",
+    endpoints: {
+      health: "/api/health",
+      contact: "POST /api/contact",
+      contacts: "GET /api/contacts",
+      contactDetail: "PATCH /api/contacts/:id",
+      products: "GET /api/products",
+      productDetail: "GET /api/products/:id",
+      compare: "GET /api/products/compare?ids=1,2",
+      recommend: "GET /api/recommend?house_type=&area=&budget=",
+      stats: "GET /api/stats",
+    },
+    admin: "/admin",
+  });
+});
+
 // Health check
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
@@ -49,6 +70,11 @@ app.get("/admin*", (req, res) => {
   } else {
     res.status(404).json({ error: "Admin dashboard not found" });
   }
+});
+
+// Root — redirect to admin
+app.get("/", (req, res) => {
+  res.redirect("/admin");
 });
 
 // Start server
